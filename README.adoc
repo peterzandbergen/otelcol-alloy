@@ -8,25 +8,27 @@ Peter Zandbergen <peter.zandbergen@myhops.com>
 
 == Introduction
 
-Try a diagram
-
-[mermaid]
-....
-sequenceDiagram
-    a->b: hallo
-....
-
 
 == Otel Collector
 
-The OpenTelemetry collector is the preferred way to receive, process and export telemetry data. 
+The OpenTelemetry collector is the preferred way to receive, process and export telemetry data.
+The instrumented resource only needs to generate the telemetry and send it to the OtelCollector.
+The OtelCollector is responsible for processing and forwarding the data to the appropriate backends. 
+
 The https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main[opentelemetry-collector-releases] repository currently offers https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions[5 distributions].
 
 The https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions/otelcol-contrib[otelcol-contrib] distribution contain a myriad of receivers, processors and exporters. 
 This makes this distro suited for most use cases.
 
 You configure the OtelCollector with one or more yaml files that specify the pipelines to ingest, process and send out the telemetry data. 
+This is fairly easy and very flexible.
 
 == Alloy
 
-Alloy is a Grafana product that performs the same task as the OpenTelemetry collector 
+Alloy is a Grafana product that performs the same task as the OpenTelemetry collector.
+It is basically an OtelCollector with Grafana specific features. 
+You can see this in the go.mod file in the repo, it has many dependencies on the OtelCollector.
+It features its own configuration language plus default receivers and exporters that work well with other products of Grafana.
+
+== Setup
+

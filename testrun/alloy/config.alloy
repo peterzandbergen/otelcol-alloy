@@ -1,0 +1,22 @@
+// Example: Define an OTLP receiver (adjust based on your telemetry source)
+otelcol.receiver.otlp "default" {
+  grpc {
+    endpoint = "0.0.0.0:4317"
+  }
+  http {
+    endpoint = "0.0.0.0:4318"
+  }
+
+  // Forward received data to the logging exporter
+  output {
+    metrics = [otelcol.exporter.debug.default.input]
+    logs    = [otelcol.exporter.debug.default.input]
+    traces  = [otelcol.exporter.debug.default.input]
+  }
+}
+
+otelcol.exporter.debug "default" {
+    verbosity = "detailed"
+    use_internal_logger = false
+}
+
