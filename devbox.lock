@@ -1,0 +1,153 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "antora@latest": {
+      "last_modified": "2025-05-16T20:19:48Z",
+      "resolved": "github:NixOS/nixpkgs/12a55407652e04dcf2309436eb06fef0d3713ef3#antora",
+      "source": "devbox-search",
+      "version": "3.1.9",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/l1j83f4awkhf1k2dhqiwag9kjn9acnvp-antora-3.1.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/l1j83f4awkhf1k2dhqiwag9kjn9acnvp-antora-3.1.9"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lq8gvvwk5z8ni9xy871y94dzmrngxwqa-antora-3.1.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/lq8gvvwk5z8ni9xy871y94dzmrngxwqa-antora-3.1.9"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/c1ry716xpryfix3p77y3jf3yssn6v58w-antora-3.1.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/c1ry716xpryfix3p77y3jf3yssn6v58w-antora-3.1.9"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ikr9wjli7ir0qb1jkq6sdnci4r2md2x4-antora-3.1.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ikr9wjli7ir0qb1jkq6sdnci4r2md2x4-antora-3.1.9"
+        }
+      }
+    },
+    "asciidoctor-with-extensions@latest": {
+      "last_modified": "2025-05-16T20:19:48Z",
+      "resolved": "github:NixOS/nixpkgs/12a55407652e04dcf2309436eb06fef0d3713ef3#asciidoctor-with-extensions",
+      "source": "devbox-search",
+      "version": "2.0.23",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/rb85hzm6d0ggppvzv2rlcgfxc3gzydng-asciidoctor-2.0.23",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/rb85hzm6d0ggppvzv2rlcgfxc3gzydng-asciidoctor-2.0.23"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ygcckbiw155g9669yxf41bbgn3a6abi1-asciidoctor-2.0.23",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ygcckbiw155g9669yxf41bbgn3a6abi1-asciidoctor-2.0.23"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/brqxzikba886angxvccyn30pb3rl1ily-asciidoctor-2.0.23",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/brqxzikba886angxvccyn30pb3rl1ily-asciidoctor-2.0.23"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7hxn17ld3xmrn53jcn93z8kydgqcz7d8-asciidoctor-2.0.23",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/7hxn17ld3xmrn53jcn93z8kydgqcz7d8-asciidoctor-2.0.23"
+        }
+      }
+    },
+    "asciidoctor@latest": {
+      "last_modified": "2025-05-16T20:19:48Z",
+      "resolved": "github:NixOS/nixpkgs/12a55407652e04dcf2309436eb06fef0d3713ef3#asciidoctor",
+      "source": "devbox-search",
+      "version": "2.0.23",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/brfwjxm44516lls6lwnjraga78l8y3nz-asciidoctor-2.0.23",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/brfwjxm44516lls6lwnjraga78l8y3nz-asciidoctor-2.0.23"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jqzg00afmyb7y8gqbrxh8i20m5131s17-asciidoctor-2.0.23",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jqzg00afmyb7y8gqbrxh8i20m5131s17-asciidoctor-2.0.23"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/1mcsy3xnvr0vmqysqzxjrki1rahjrkh5-asciidoctor-2.0.23",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/1mcsy3xnvr0vmqysqzxjrki1rahjrkh5-asciidoctor-2.0.23"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vb9m30kh4xivma7m20y7s5pfzjzfshwh-asciidoctor-2.0.23",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/vb9m30kh4xivma7m20y7s5pfzjzfshwh-asciidoctor-2.0.23"
+        }
+      }
+    },
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "last_modified": "2025-05-03T19:26:05Z",
+      "resolved": "github:NixOS/nixpkgs/f21e4546e3ede7ae34d12a84602a22246b31f7e0?lastModified=1746300365&narHash=sha256-thYTdWqCRipwPRxWiTiH1vusLuAy0okjOyzRx4hLWh4%3D"
+    }
+  }
+}

@@ -8,6 +8,13 @@ Peter Zandbergen <peter.zandbergen@myhops.com>
 
 == Introduction
 
+Try a diagram
+
+[mermaid]
+....
+sequenceDiagram
+    a->b: hallo
+....
 
 
 == Otel Collector
