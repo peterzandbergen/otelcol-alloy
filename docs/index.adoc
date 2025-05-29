@@ -1,0 +1,25 @@
+= Comparing Otelcol and Alloy
+:doctype: article
+:toc:
+:toclevels: 4
+Peter Zandbergen <peter.zandbergen@myhops.com>
+
+
+
+== Introduction
+
+
+
+== Otel Collector
+
+The OpenTelemetry collector is the preferred way to receive, process and export telemetry data. 
+The https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main[opentelemetry-collector-releases] repository currently offers https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions[5 distributions].
+
+The https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions/otelcol-contrib[otelcol-contrib] distribution contain a myriad of receivers, processors and exporters. 
+This makes this distro suited for most use cases.
+
+You configure the OtelCollector with one or more yaml files that specify the pipelines to ingest, process and send out the telemetry data. 
+
+== Alloy
+
+Alloy is a Grafana product that performs the same task as the OpenTelemetry collector 
