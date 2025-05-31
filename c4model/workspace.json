@@ -1,0 +1,75 @@
+{
+  "configuration" : { },
+  "description" : "description",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedAgent" : "structurizr-ui",
+  "lastModifiedDate" : "2025-05-31T19:53:07Z",
+  "model" : {
+    "people" : [ {
+      "description" : "description",
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "person",
+      "properties" : {
+        "structurizr.dsl.identifier" : "person1"
+      },
+      "relationships" : [ {
+        "description" : "Uses",
+        "destinationId" : "2",
+        "id" : "3",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person,tags"
+    } ],
+    "softwareSystems" : [ {
+      "description" : "description",
+      "documentation" : { },
+      "id" : "2",
+      "location" : "Unspecified",
+      "name" : "system",
+      "properties" : {
+        "structurizr.dsl.identifier" : "system1"
+      },
+      "tags" : "Element,Software System,tags"
+    } ]
+  },
+  "name" : "name",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlICJuYW1lIiAiZGVzY3JpcHRpb24iIHsKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKICAgICFpbXBsaWVkUmVsYXRpb25zaGlwcyB0cnVlCgogICAgbW9kZWwgewogICAgICAgIHBlcnNvbjEgPSBwZXJzb24gInBlcnNvbiIgImRlc2NyaXB0aW9uIiAidGFncyIKCiAgICAgICAgc3lzdGVtMSA9IHNvZnR3YXJlU3lzdGVtICJzeXN0ZW0iICJkZXNjcmlwdGlvbiIgInRhZ3MiIHsKICAgICAgICAgICAgCiAgICAgICAgfQoKICAgICAgICBwZXJzb24xIC0+IHN5c3RlbTEgIlVzZXMiCiAgICAgICAgCiAgICB9CiAgICB2aWV3cyB7CiAgICAgICAgc3lzdGVtQ29udGV4dCBzeXN0ZW0xICJuYW1lIiAiZGVzY3JpcHRpb24iIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgfQoKICAgIH0KfQ=="
+  },
+  "views" : {
+    "configuration" : {
+      "branding" : { },
+      "lastSavedView" : "name",
+      "metadataSymbols" : "SquareBrackets",
+      "styles" : { },
+      "terminology" : { }
+    },
+    "systemContextViews" : [ {
+      "description" : "description",
+      "dimensions" : {
+        "height" : 1748,
+        "width" : 2480
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 1015,
+        "y" : 185
+      }, {
+        "id" : "2",
+        "x" : 1015,
+        "y" : 724
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "name",
+      "order" : 1,
+      "paperSize" : "A5_Landscape",
+      "relationships" : [ {
+        "id" : "3"
+      } ],
+      "softwareSystemId" : "2"
+    } ]
+  }
+}

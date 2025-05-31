@@ -32,3 +32,15 @@ It features its own configuration language plus default receivers and exporters 
 
 == Setup
 
+What we want to figure out is to compare the configuration of the Otel Collector with the Alloy one and to see what is more convenient and easier to learn.
+
+Our setup will consist of one Otel Collector that we hit with the https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/cmd/telemetrygen[telemetrygen] program. This collector sends all received telemetry to two downstream otel collectors, one is the OtelCollector contrib and the other is Alloy.
+
+[mermaid]
+----
+sequenceDiagram
+    a->b: Hello
+
+----
+
+
