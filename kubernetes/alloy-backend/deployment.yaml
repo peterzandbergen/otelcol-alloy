@@ -40,6 +40,9 @@ spec:
             - name: otlp-http
               containerPort: 4318
               protocol: TCP
+            - name: dashboard
+              containerPort: 12345
+              protocol: TCP
       volumes:
         - name: config
           configMap:

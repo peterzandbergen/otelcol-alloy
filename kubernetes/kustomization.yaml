@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - otelcol-frontend
   - otelcol-backend
+  - alloy-backend

@@ -6,11 +6,16 @@ spec:
   selector:
     app: alloy-backend
   ports:
-    - name: port-1
+    - name: otlp-grpc
       port: 4317
       protocol: TCP
-      targetPort: 4317
-    - name: port-2
+      targetPort: otlp-grpc
+    - name: otlp-http
       port: 4318
       protocol: TCP
-      targetPort: 4318
+      targetPort: otlp-http
+    - name: dashboard
+      port: 12345
+      protocol: TCP
+      targetPort: dashboard
+    
