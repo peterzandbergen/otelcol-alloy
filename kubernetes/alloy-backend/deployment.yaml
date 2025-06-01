@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alloy-backend
+spec:
+  selector:
+    matchLabels:
+      app: alloy-backend
+  template:
+    metadata:
+      labels:
+        app: alloy-backend
+    spec:
+      containers:
+        - name: alloy-backend
+          image: grafana/alloy:latest
+          args:
+            - run
+            - --server.http.listen-addr=0.0.0.0:12345
+            - --storage.path=/var/lib/alloy/data
+            - --stability.level=experimental
+            - /etc/alloy/config.alloy
+          volumeMounts:
+            - name: config
+              mountPath: /etc/alloy
+            - name: alloy-data
+              mountPath: /var/lib/alloy/data
+
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - name: otlp-grpc
+              containerPort: 4317
+              protocol: TCP
+            - name: otlp-http
+              containerPort: 4318
+              protocol: TCP
+      volumes:
+        - name: config
+          configMap:
+            name: alloy-backend-config
+            defaultMode: 0660
+        - name: alloy-data
+          emptyDir: {}
+            

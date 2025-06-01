@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otelcol-frontend-config
+data:
+  config.yaml: |-
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+
+    processors:
+      batch:
+
+    exporters:
+      otlp/otelcol:
+        endpoint: otelcol-backend:4317
+        tls:
+          insecure: true
+
+      otlp/alloy:
+        endpoint: alloy-backend:4317
+        tls:
+          insecure: true
+
+    service:
+
+      pipelines:
+
+        traces:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [otlp/otelcol, otlp/alloy]
+        
+        metrics:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [otlp/otelcol, otlp/alloy]
+
+        logs:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [otlp/otelcol, otlp/alloy]
+
+
+  

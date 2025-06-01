@@ -17,7 +17,9 @@
                 "asciidoctor.asciidoctor-vscode",
                 "streetsidesoftware.code-spell-checker",
                 "systemticks.c4-dsl-extension",
-                "archicionado.cornifer"
+                "archicionado.cornifer",
+                "ms-azuretools.vscode-containers",
+                "ms-kubernetes-tools.vscode-kubernetes-tools"
             ]
         }
     },
@@ -25,7 +27,10 @@
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/braun-daniel/devcontainer-features/fzf:1": {},
         "ghcr.io/braun-daniel/devcontainer-features/spaceship:1": {},
-        "ghcr.io/devcontainers/features/java:1": {}
+        "ghcr.io/devcontainers/features/java:1": {},
+        "ghcr.io/rio/features/kustomize:1": {},
+        "ghcr.io/devcontainers-extra/features/kubectl-asdf:2": {},
+        "ghcr.io/devcontainers-extra/features/kind:1": {}
     },
     "remoteUser": "node",
     "updateContentCommand": "npm install -g @devcontainers/cli",

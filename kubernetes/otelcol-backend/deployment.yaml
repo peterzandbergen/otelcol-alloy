@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otelcol-backend
+spec:
+  selector:
+    matchLabels:
+      app: otelcol-backend
+  template:
+    metadata:
+      labels:
+        app: otelcol-backend
+    spec:
+      containers:
+        - name: otelcol-backend
+          image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.127.0
+          args:
+            - --config=/etc/otelcol/config.yaml
+          volumeMounts:
+            - name: config
+              mountPath: /etc/otelcol
+
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - name: otlp-grpc
+              containerPort: 4317
+              protocol: TCP
+            - name: otlp-http
+              containerPort: 4318
+              protocol: TCP
+      volumes:
+        - name: config
+          configMap:
+            name: otelcol-backend-config
+            defaultMode: 0660
