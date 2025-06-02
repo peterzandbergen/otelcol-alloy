@@ -1,0 +1,72 @@
+extensions:
+  basicauth/traces_auth:
+    client_auth:
+      username: ${env:OBP_PNR_TRACES_USERNAME}
+      password: ${env:OBP_PNR_TRACES_TOKEN}
+
+  basicauth/loki_auth:
+    client_auth:
+      username: ${env:OBP_PNR_LOGS_USERNAME}
+      password: ${env:OBP_PNR_LOGS_TOKEN}
+
+  basicauth/prometheus_auth:
+    client_auth:
+      username: ${env:OBP_PNR_METRICS_USERNAME}
+      password: ${env:OBP_PNR_METRICS_TOKEN}
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+
+exporters:
+  otlp/traces:
+    endpoint: ${env:OBP_PNR_TRACES_BACKEND}
+    auth:
+      authenticator: basicauth/traces_auth
+    tls:
+      ca_file: /etc/openshift-cabundle/ca-bundle.crt
+
+  loki:
+    endpoint: ${env:OBP_PNR_LOGS_BACKEND}
+    auth:
+      authenticator: basicauth/loki_auth
+    tls:
+      ca_file: /etc/openshift-cabundle/ca-bundle.crt
+
+  prometheusremotewrite:
+    endpoint: ${env:OBP_PNR_METRICS_BACKEND}
+    auth:
+      authenticator: basicauth/prometheus_auth
+    tls:
+      ca_file: /etc/openshift-cabundle/ca-bundle.crt
+
+
+service:
+  extensions: 
+    - basicauth/traces_auth
+    - basicauth/loki_auth
+    - basicauth/prometheus_auth
+  
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/traces]
+
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheusremotewrite]
+
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [loki]

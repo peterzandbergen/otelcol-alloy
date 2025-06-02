@@ -1,0 +1,121 @@
+// Alloy Self Log Level 
+// All the Configuration that has to do with Alloys logging level.
+
+logging {
+    level  = "info"
+    format = "logfmt"
+}
+
+// Kubernetes Secrets and Configmaps
+// All the Configuration that has to do with Secrets and Configmaps
+// https://grafana.com/docs/alloy/latest/reference/components/remote/remote.kubernetes.secret/
+remote.kubernetes.secret "backend_secrets" {
+    namespace = "obp-pnr-alloy"
+    name = "obp-pnr-alloy-backends"
+}
+
+// https://grafana.com/docs/alloy/latest/reference/components/remote/remote.kubernetes.configmap/
+remote.kubernetes.configmap "endpoints" {
+    namespace = "obp-pnr-alloy"
+    name = "backend-endpoints"
+}
+
+otelcol.receiver.otlp "MUSKETIERS_TRACE_RECEIVER" {
+    grpc {
+        endpoint = "0.0.0.0:4317"
+    }
+
+    http {
+        endpoint = "0.0.0.0:4318"
+    }
+
+    output {
+        traces  = [otelcol.processor.batch.MUSKETIERS_BATCH.input]
+        metrics = [otelcol.processor.batch.MUSKETIERS_BATCH.input]
+        logs = [otelcol.processor.batch.MUSKETIERS_BATCH.input]
+    }
+}
+
+// otelcol.exporter.otlp.MUSKETIERS_TRACE_EXPORT.input
+otelcol.processor.batch "MUSKETIERS_BATCH" {
+    output {
+        traces  = [otelcol.exporter.otlp.MUSKETIERS_TRACES_EXPORT.input]
+        metrics  = [otelcol.exporter.prometheus.MUSKETIERS_METRICS_EXPORT.input]
+        logs  = [otelcol.exporter.loki.MUSKETIERS_LOGS_EXPORT.input]
+    }
+}
+
+otelcol.auth.basic "MUSKETIERS_TRACES_EXPORT" {
+    username = nonsensitive(remote.kubernetes.secret.backend_secrets.data["username"])
+    password = remote.kubernetes.secret.backend_secrets.data["traces_token"]
+}
+
+otelcol.exporter.otlp "MUSKETIERS_TRACES_EXPORT" {
+    client {
+        endpoint = remote.kubernetes.configmap.endpoints.data["traces-endpoint"]
+        auth = otelcol.auth.basic.MUSKETIERS_TRACES_EXPORT.handler
+        tls {
+            ca_file = "/etc/openshift-cabundle/ca-bundle.crt"
+        }
+    }
+}
+
+otelcol.exporter.loki "MUSKETIERS_LOGS_EXPORT" {
+    forward_to = [loki.write.MUSKETIERS_LOGS_EXPORT.receiver]
+}
+
+loki.write "MUSKETIERS_LOGS_EXPORT" {
+    endpoint{
+    url = remote.kubernetes.configmap.endpoints.data["logs-endpoint"]
+
+    basic_auth {
+        username = nonsensitive(remote.kubernetes.secret.backend_secrets.data["username"])
+        password = remote.kubernetes.secret.backend_secrets.data["logs_token"]
+    }
+
+    tls_config {
+        ca_file = "/etc/openshift-cabundle/ca-bundle.crt"
+    }
+
+    }
+}
+
+otelcol.exporter.prometheus "MUSKETIERS_METRICS_EXPORT" {
+    forward_to = [prometheus.remote_write.MUSKETIERS_METRICS_EXPORT.receiver]
+}
+
+// Backend voor prometheus
+// https://grafana.com/docs/grafana-cloud/send-data/alloy/reference/components/otelcol/otelcol.exporter.prometheus/
+// https://confluence.belastingdienst.nl/spaces/CPET/pages/2695036941/Recipe+-+Basic+Grafana+Alloy+Configuratie
+prometheus.remote_write "MUSKETIERS_METRICS_EXPORT" {
+    endpoint {
+    url = remote.kubernetes.configmap.endpoints.data["metrics-endpoint"]
+
+    basic_auth {
+        username = nonsensitive(remote.kubernetes.secret.backend_secrets.data["username"])
+        password = remote.kubernetes.secret.backend_secrets.data["metrics_token"]
+    }
+
+    tls_config {
+        ca_file = "/etc/openshift-cabundle/ca-bundle.crt"
+    }
+    }
+
+}
+
+// otelcol.exporter.otlp "MUSKETIERS_TRACE_EXPORT" {
+//   client {
+//     endpoint = remote.kubernetes.configmap.endpoints.data["tracesendpoint"]
+//     auth     = otelcol.auth.basic.MUSKETIERS_TRACE_AUTH.handler
+//     tls {
+//       ca_file = "/etc/openshift-cabundle/ca-bundle.crt"
+//     }
+//   }
+// }
+
+/*
+otelcol.auth.basic "MUSKETIERS_TRACE_AUTH" {
+    username = nonsensitive(remote.kubernetes.configmap.endpoints.data["username"])
+    password = remote.kubernetes.secret.enterprise.data["traces"]
+}
+*/
